@@ -1,10 +1,10 @@
 package contabancaria.model;
 
-public class contapoupanca extends Conta {
+public class ContaPoupanca extends Conta {
 	
 	private int aniversario;
 
-	public contapoupanca(int numero, int agencia, int tipo, String titular, float saldo, int aniversario) {
+	public ContaPoupanca(int numero, int agencia, int tipo, String titular, float saldo, int aniversario) {
 		super(numero, agencia, tipo, titular, saldo);
 		this.aniversario = aniversario;
 	}
@@ -22,6 +22,8 @@ public class contapoupanca extends Conta {
 	public void visualizar() {
 		super.visualizar();
 		System.out.println("Aniversario da conta: " + this.aniversario);
+		
+		
 	}
 	
 	
