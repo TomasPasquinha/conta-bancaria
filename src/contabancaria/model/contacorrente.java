@@ -1,0 +1,39 @@
+package contabancaria.model;
+
+import java.text.NumberFormat;
+
+public class contacorrente extends Conta {
+
+	private float limite;
+
+	public contacorrente(int numero, int agencia, int tipo, String titular, float saldo, float limite) {
+		super(numero, agencia, tipo, titular, saldo);
+		this.limite = limite;
+	}
+
+	public float getLimite() {
+		return limite;
+	}
+
+	public void setLimite(float limite) {
+		this.limite = limite;
+	}
+	
+	public boolean sacar(float valor) {
+		if ((this.getSaldo() + this.limite) < valor) {
+			System.out.println("\nSaldo é Insuficiente");
+			return false;
+		}
+		
+		this.setSaldo(this.getSaldo() - valor);
+		return true;
+	}
+	
+	public void visualizar() {
+		NumberFormat nfMoeda = NumberFormat.getCurrencyInstance();
+		super.visualizar();
+		
+		System.out.println("Limite da conta: " + nfMoeda.format(this.limite));
+	}
+	
+}
