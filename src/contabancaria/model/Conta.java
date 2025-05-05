@@ -4,96 +4,99 @@ import java.text.NumberFormat;
 
 public abstract class Conta {
 
-	// Atributos da Classe 
-	private int numero;
-	private int agencia;
-	private int tipo;
-	private String titular;
-	private float saldo;
-	
-	//Metodo construor
-	public Conta(int numero, int agencia, int tipo, String titular, float saldo) {
-		this.numero = numero;
-		this.agencia = agencia;
-		this.tipo = tipo;
-		this.titular = titular;
-		this.saldo = saldo;
-	}
+    // Atributos da Classe 
+    private int numero;
+    private int agencia;
+    private int tipo;
+    private String titular;
+    private float saldo;
 
-	public int getNumero() {
-		return numero;
-	}
-	
-	//Metodo Get e Set
+    // Método construtor
+    public Conta(int numero, int agencia, int tipo, String titular, float saldo) {
+        this.numero = numero;
+        this.agencia = agencia;
+        this.tipo = tipo;
+        this.titular = titular;
+        this.saldo = saldo;
+    }
 
-	public void setNumero(int numero) {
-		this.numero = numero;
-	}
+    public int getNumero() {
+        return numero;
+    }
 
-	public int getAgencia() {
-		return agencia;
-	}
+    // Métodos Get e Set
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
 
-	public void setAgencia(int agencia) {
-		this.agencia = agencia;
-	}
+    public int getAgencia() {
+        return agencia;
+    }
 
-	public int getTipo() {
-		return tipo;
-	}
+    public void setAgencia(int agencia) {
+        this.agencia = agencia;
+    }
 
-	public void setTipo(int tipo) {
-		this.tipo = tipo;
-	}
+    public int getTipo() {
+        return tipo;
+    }
 
-	public String getTitular() {
-		return titular;
-	}
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
+    }
 
-	public void setTitular(String titular) {
-		this.titular = titular;
-	}
+    public String getTitular() {
+        return titular;
+    }
 
-	public float getSaldo() {
-		return saldo;
-	}
+    public void setTitular(String titular) {
+        this.titular = titular;
+    }
 
-	public void setSaldo(float saldo) {
-		this.saldo = saldo;
-	}
-	
-	public boolean sacar(float valor) {
-		if (this.saldo < valor) {
-			System.out.println("\nSaldo é Insuficiente");
-			return false;
-		}
-		this.saldo -= valor;
-		return true;
-	}
-	
-	public void depositar(float valor) {
-		this.saldo += valor;
-	}
-	public void visualizar() {
-		
-		NumberFormat nfMoeda = NumberFormat.getCurrencyInstance();
-		
-		String tipo = "";
-		
-		switch(this.tipo) {
-		case 1 -> tipo = "Conta Corrente";
-		case 2 -> tipo = "Conta Poupança";
-		default -> tipo = "Inválido";
-		}
-		
-		System.out.println("DADOS DA CONTA. ");
-		System.out.println("Número da Conta: " + this.numero);
-		System.out.println("Número da Agência: " + this.agencia);
-		System.out.println("Tipo da conta: " + this.tipo);
-		System.out.println("Titular da conta: " + this.titular);
-		System.out.println("Saldo da conta: " + this.saldo);
-		System.out.println("Saldo da conta: " + nfMoeda.format(this.saldo));
-	}
-	
-	
+    public float getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(float saldo) {
+        this.saldo = saldo;
+    }
+
+    public boolean sacar(float valor) {
+        if (this.saldo < valor) {
+            System.out.println("\nSaldo é Insuficiente");
+            return false;
+        }
+        this.saldo -= valor;
+        return true;
+    }
+
+    public void depositar(float valor) {
+        this.saldo += valor;
+    }
+
+    public void visualizar() {
+        NumberFormat nfMoeda = NumberFormat.getCurrencyInstance();
+
+        String tipoConta = "";  // Corrigido de "tipo" para "tipoConta"
+        
+        // Definir tipo da conta de acordo com o valor de this.tipo
+        switch(this.tipo) {
+            case 1:
+                tipoConta = "Conta Corrente";
+                break;
+            case 2:
+                tipoConta = "Conta Poupança";
+                break;
+            default:
+                tipoConta = "Inválido";
+        }
+
+        // Exibição dos dados da conta
+        System.out.println("DADOS DA CONTA.");
+        System.out.println("Número da Conta: " + this.numero);
+        System.out.println("Número da Agência: " + this.agencia);
+        System.out.println("Tipo da conta: " + tipoConta);  // Corrigido para exibir "tipoConta"
+        System.out.println("Titular da conta: " + this.titular);
+        System.out.println("Saldo da conta: " + nfMoeda.format(this.saldo));
+    }
 }
