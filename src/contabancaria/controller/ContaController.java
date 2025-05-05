@@ -67,7 +67,7 @@ public class ContaController implements ContaRepository {
         Optional<Conta> conta = buscarNaCollection(numero);
 
         if (conta.isPresent()) {
-            if (conta.get().sacar(valor))
+            if (conta.get().sacar(valor) == true)
                 System.out.println("Saque realizado com sucesso!");
         } else {
             System.out.println("Conta não encontrada.");
