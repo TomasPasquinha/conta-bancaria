@@ -1,7 +1,9 @@
 package contabancaria.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import Conta_Bancaria.Repository.ContaRepository;
 import contabancaria.model.Conta;
@@ -30,6 +32,21 @@ public class ContaController implements ContaRepository {
         for (var conta : listaContas) {
             conta.visualizar();
         }
+    }
+    
+    @Override
+	public void listarPorTitular(String titular) {
+    	
+    	List<Conta> listaTitulares = listaContas.stream()
+    			.filter(c -> c.getTitular().contains(titular))
+    			.collect(Collectors.toList());
+    	
+    	if(listaTitulares.isEmpty())
+    		System.out.printf("\nNenhuma conta foi encontrada com base no critério: %s", titular);
+    		
+    	for(var conta : listaTitulares)
+    		conta.visualizar();
+    		
     }
 
     @Override
@@ -109,4 +126,9 @@ public class ContaController implements ContaRepository {
         }
         return Optional.empty();
     }
-}
+
+	
+		
+		
+	}
+

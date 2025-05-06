@@ -31,6 +31,7 @@ public class Menu {
                 + "6 - Sacar\n" 
                 + "7 - Depositar\n"
                 + "8 - Transferir valores entre Contas\n" 
+                + "9 - Consultar contas por titular\n"
                 + "0 - Sair\n"
                 + "============================================" + Cores.TEXT_RESET);
 
@@ -73,6 +74,9 @@ public class Menu {
                     break;
                 case 8:
                     transferir();
+                    break;
+                case 9:
+                    consultarPorTitular();
                     break;
                 default:
                     System.out.println(Cores.TEXT_RED + "Opção inválida. Tente novamente." + Cores.TEXT_RESET);
@@ -185,4 +189,12 @@ public class Menu {
         float valor = scanner.nextFloat();
         contaController.transferir(numeroOrigem, numeroDestino, valor);
     }
+
+    private static void consultarPorTitular() {
+        System.out.print("\nInforme o nome (ou parte dele) do titular: ");
+        scanner.nextLine(); // limpar buffer
+        String titular = scanner.nextLine();
+        contaController.listarPorTitular(titular);
+    }
 }
+
